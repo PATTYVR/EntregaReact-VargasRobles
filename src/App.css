@@ -4,6 +4,7 @@ body {
   background-color: burlywood;
 }
 
+
 .iconoCar {
   padding-left: 900px;
 }
@@ -19,4 +20,44 @@ body {
   padding-left: 10px;
   font-size: 25px;
   color: blueviolet;
+}
+
+.card-container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  
+}
+
+.imagenes{
+  width: 250px;
+  height: 230px;
+}
+
+.titulo-card{
+  text-align: center;
+  color: brown;
+}
+
+.description-card {
+  align-content: center;
+}
+
+.button-card {
+ text-align: center;
+  background-color: plum;
+  color: black;
+ margin-left: 80px;
+ margin-bottom: -10px;
+ 
+}
+
+.titulo-detalle {
+  color: black;
+  text-align: justify;
+  font-size: 35px;
+ 
 }

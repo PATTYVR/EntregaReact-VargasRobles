@@ -1,5 +1,5 @@
 import CarWidget from "./CarWidget";
-
+import { Link } from "react-router-dom";
 
 
 const NavBar = () => {
@@ -8,20 +8,20 @@ const NavBar = () => {
         
         <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">ANIMES SHOP</a>
+          <Link to='/' className="navbar-brand" href="#">ANIMES SHOP</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Categoria 1</a>
+                <Link to= '/category/1' className="nav-link active" aria-current="page" href="#">Dragon Ball</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Categoria 2</a>
+                <Link to= '/category/2' className="nav-link" href="#">Sailor Moon</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Categoria 3</a>
+                <Link to= '/category/3' className="nav-link" href="#">Naruto</Link>
               </li>
               <CarWidget />
               
