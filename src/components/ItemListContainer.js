@@ -13,10 +13,10 @@ const ItemListContainer = () => {
             const fetchFromFirestore = async () => {
                 let q;
                 if (idCategory) {
-                    q = query(collection(db, 'products'), where('categoryId', '==', idCategory))
+                    q = query(collection(db, 'products'), where('categoryId', '==', parseInt(idCategory)))
 
                 }else {
-                    const q = query(collection(db, "products"));
+                    q = query(collection(db, "products"));
                 }
                
                 const querySnapshot = await getDocs(q);
