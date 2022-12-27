@@ -36,7 +36,7 @@ export const products = [
         stock: 60,
         price:148,
         description: "Funko Pop Sailor Moon-Mars.",
-        image: ["https://sodimac.scene7.com/is/image/SodimacPeru/3243206?fmt=jpg&fit=fit,1&wid=420&hei=420"],
+        image: ["https://exitocol.vtexassets.com/arquivos/ids/14620857-800-auto?v=637987891939570000&width=800&height=auto&aspect=true"],
         categoryId:2
 
     },

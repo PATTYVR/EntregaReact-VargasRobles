@@ -23,7 +23,7 @@ const NavBar = () => {
               <li className="nav-item">
                 <Link to= '/category/3' className="nav-link" href="#">Naruto</Link>
               </li>
-              <CarWidget />
+              <div><Link to='/cart' style={{textDecoration: "none", color: "white"}}><CarWidget /></Link></div>
               
             </ul>
           </div>

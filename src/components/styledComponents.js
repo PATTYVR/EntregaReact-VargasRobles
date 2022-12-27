@@ -16,3 +16,4 @@ const ImageDetail = styled.img`
 export {
     ImgContainer, ImageDetail
 }
+
