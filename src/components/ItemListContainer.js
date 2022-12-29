@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import ItemList from './ItemList';
-import { customFetch } from '../utils/customFetch';
+
 import { useParams } from "react-router-dom";
 import {db} from '../utils/firebaseConfig';
-import { collection, getDocs, QuerySnapshot, query, where } from "firebase/firestore"; 
+import { collection, getDocs, query, where, orderBy } from "firebase/firestore"; 
 
 const ItemListContainer = () => {
     const [datos, setDatos] = useState([]);
@@ -13,10 +13,10 @@ const ItemListContainer = () => {
             const fetchFromFirestore = async () => {
                 let q;
                 if (idCategory) {
-                    q = query(collection(db, 'products'), where('categoryId', '==', idCategory))
+                    q = query(collection(db, 'products'), where('categoryId', '==', parseInt(idCategory)))
 
-                }else {
-                    const q = query(collection(db, "products"));
+                } else {
+                    q = query(collection(db, "products"), orderBy('price'));
                 }
                
                 const querySnapshot = await getDocs(q);
@@ -27,6 +27,8 @@ const ItemListContainer = () => {
             }))
            return dataFromFirestore;
 
+           
+
             }  
 
         fetchFromFirestore()
@@ -34,9 +36,7 @@ const ItemListContainer = () => {
         .catch(err => console.log(err))
     }, [idCategory]);
 
-    useEffect(() => { 
-
-    },[]);
+  
 
     return (
 

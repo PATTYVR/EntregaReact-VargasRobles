@@ -1,5 +1,6 @@
 import CarWidget from "./CarWidget";
 import { Link } from "react-router-dom";
+import '../App.css';
 
 
 const NavBar = () => {
@@ -23,7 +24,9 @@ const NavBar = () => {
               <li className="nav-item">
                 <Link to= '/category/3' className="nav-link" href="#">Naruto</Link>
               </li>
-              <div><Link to='/cart' style={{textDecoration: "none", color: "white"}}><CarWidget /></Link></div>
+        
+              
+              <div className="navCarrito"><Link to='/cart' style={{textDecoration: "none", color: "white"}}><CarWidget /></Link></div>
               
             </ul>
           </div>

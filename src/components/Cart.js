@@ -3,9 +3,13 @@ import { CartContext } from "./CartContext";
 import Item from "./Item";
 import '../App.css';
 import { TextSnippet } from "@mui/icons-material";
-
+import { collection, increment, serverTimestamp, updateDoc} from "firebase/firestore";
 import FormatNumber from "../utils/FormatNumber";
 import styled from "styled-components";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from '../utils/firebaseConfig';
+
+
 
 const Summary = styled.div`
   flex: 1;
@@ -33,29 +37,71 @@ const SummaryItemPrice = styled.span``;
 const Button = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: black;
+  background-color:  #720e9e;
+  border-radius: 5px ;
   color: white;
-  font-weight: 600;
+  font-weight: 800;
 `;
+
+
 
 const Cart = () => {
     const test = useContext(CartContext);
-    
+
+    const createOrder = () => {
+        const order = {
+            buyer: {
+                name: "Patricia Vargas Robles",
+                email: "dashapalomino1503@gmail.com",
+                phone: "967734758"
+            },
+            date: serverTimestamp(),
+            items: test.cartList.map(item => ({
+                id: item.idItem,
+                title: item.nameItem,
+                price: item.priceItem,
+                qty: item.qtyItem
+            })),
+            total: test.calcTotal()
+        }
+       
+
+        const createOrderInFirestore = async () => {
+            const newOrderRef = doc(collection(db, "orders"))
+             await setDoc(newOrderRef, order);
+            return newOrderRef
+    }
+
+    createOrderInFirestore ()
+    .then(result => {
+        alert("Tu orden " + result.id + " ha sido creada" )
+         test.cartList.forEach(async(item) => {
+            const itemRef = doc( db, "products", item.idItem);
+            await updateDoc(itemRef, {
+                stock: increment(-item.qtyItem)
+            });
+         })
+        test.clear()
+       
+    })
+   
+}
+
     return (
         <>
-            <h1>I'm Cart </h1>
-                <button onClick={test.removeList}>Vaciar carrito</button>
+            <h1 className="tituloCarro">Carrito </h1>
+                <button className="botonVaciarCarrito" onClick={test.clear}>Vaciar carrito</button>
         
 
             <ul>
                 {   
                    
                 (test.cartList.length === 0)
-                ? <p>Tu carrito esta vacio </p>
-                : test.cartList.map(item => <li key={item.idItem}> <img className="imagen-carrito" src={item.imgItem} alt=""/> 
-                {item.nameItem} - cantidad: {item.qtyItem} - <div>{item.qtyItem} item(s)- <div> {item.priceItem} cada uno </div></div> 
-                - <div> total: {test.calcTotalPerItem(item.idItem)} soles</div> 
-                <button onClick={() => test.deleteThis(item.idItem)}>Eliminar producto</button></li>
+                ? <p className="parrafoCarritoVacio">Tu carrito esta vacio </p>
+                : test.cartList.map(item => <li className="listaDeProductos" key={item.idItem}> <img className="imagen-carrito" src={item.imgItem} alt=""/> 
+                {item.nameItem}   <div>cantidad: {item.qtyItem} item(s) <div> {item.priceItem} cada uno </div></div> 
+                 <div> total: {test.calcTotalPerItem(item.idItem)} soles</div> 
+                <button className="botonEliminarProducto" onClick={() => test.deleteThis(item.idItem)}>Eliminar producto</button></li>
                )
                 }
                
@@ -80,7 +126,7 @@ const Cart = () => {
                     <SummaryItemText>Total</SummaryItemText>
                     <SummaryItemPrice><FormatNumber number={test.calcTotal()} /></SummaryItemPrice>
                 </SummaryItem>
-                <Button>PAGAR</Button>
+                <Button onClick={createOrder}>PAGAR</Button>
             </Summary>
 
             }
@@ -89,4 +135,4 @@ const Cart = () => {
     );
 }
 
-export default Cart;
+ export default Cart;

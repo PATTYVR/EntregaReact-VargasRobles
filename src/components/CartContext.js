@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import swal from 'sweetalert';
 
 export const CartContext = createContext ();
 
@@ -28,14 +29,17 @@ const CartContextProvider = ({ children }) => {
 
     }
 
-    const removeList = () => {
+    const clear = () => {
         setCartList([]);
     }
     
 
 
     const deleteThis = (id) => {
+    
         const eliminarProducto = cartList.filter(item => item.idItem !== id);
+    
+        
         setCartList(eliminarProducto);
     }
 
@@ -66,7 +70,7 @@ const CartContextProvider = ({ children }) => {
    
 
     return (
-            <CartContext.Provider value={{cartList, addToCart, deleteThis, removeList, calcTotalPerItem, calcSubTotal, calcTaxes, 
+            <CartContext.Provider value={{cartList, addToCart, deleteThis, clear, calcTotalPerItem, calcSubTotal, calcTaxes, 
                 calcTotal,
                 calcItemsQty   }}>
                 { children }

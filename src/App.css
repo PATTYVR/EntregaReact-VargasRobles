@@ -1,16 +1,12 @@
 
 
 body {
-  background-color: burlywood;
+  background-color: #DDA0DD;
 }
 
-
-.iconoCar {
-  padding-left: 900px;
-}
 
 .navbar-brand {
-  color: brown;
+  color: #720e9e;
   font-family: 'Times New Roman', Times, serif;
   font-size: 35px;
 
@@ -24,8 +20,8 @@ body {
 
 .card-container {
   padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
   justify-content: center;
   width: 100%;
   gap: 20px;
@@ -39,7 +35,7 @@ body {
 
 .titulo-card{
   text-align: center;
-  color: brown;
+  color: #720e9e;
 }
 
 .description-card {
@@ -66,5 +62,54 @@ body {
 .imagen-carrito {
   width: 200px;
   height: 200px;
+  border-radius: 5px ;
+  margin-top: 10px;
+
  
+}
+
+.navCarrito {
+  padding-left: 800px;
+  
+}
+
+.container-fluid{
+  background-color: #D8BFD8;
+}
+
+.botonVaciarCarrito {
+  background-color: #720e9e;
+  color: white;
+  margin-left: 30px;
+  margin-bottom: 15px;
+  font-size: 30px;
+  border-radius: 5px ;
+  
+}
+
+.botonEliminarProducto {
+  background-color: #720e9e ;
+  color: white;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
+  border-radius: 5px ;
+}
+
+.listaDeProductos{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-gap: 10px;
+  
+}
+
+.tituloCarro{
+  text-align: center;
+  color: #720e9e;
+  font-size: 50px;
+}
+
+.parrafoCarritoVacio{
+  color: #720e9e;
+  font-size: 50px;
 }

@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import '../App.css';
 import ItemCount from './ItemCount';
 import { CartContext } from './CartContext';
+import swal from 'sweetalert';
 
 
 
@@ -15,7 +16,7 @@ const ItemDetail =({ item }) => {
  
 
   const onAdd = (qty) => {
-    alert("You have selected " + qty + " items.");
+    swal("You have selected " + qty + " items.");
     setItemCount(qty);
     addToCart(item, qty);
 }
@@ -40,7 +41,7 @@ const ItemDetail =({ item }) => {
           {
             itemCount ===0
             ?<ItemCount stock={item.stock} initial={itemCount} onAdd={onAdd} />
-            : <Link to= '/cart' ><Button variant="primary" >CheckOut</Button></Link>
+            : <Link to= '/cart' ><Button variant="primary"  >CheckOut</Button></Link>
 
           }
         </Container>
