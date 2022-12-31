@@ -15,13 +15,9 @@ const ItemListContainer = () => {
                 if (idCategory) {
                     q = query(collection(db, 'products'), where('categoryId', '==', parseInt(idCategory)))
 
-<<<<<<< HEAD
                 } else {
                     q = query(collection(db, "products"), orderBy('price'));
-=======
-                }else {
-                    q = query(collection(db, "products"));
->>>>>>> 617c3f1a24b9399fa73983dd22133b67986523a2
+
                 }
                
                 const querySnapshot = await getDocs(q);
